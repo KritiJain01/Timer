@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Activity Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+  <div class="max-w-6xl mx-auto p-6 min-h-screen">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">Daily Activity Tracker</h1>
+      <p class="text-gray-600">Create custom activities and track your daily progress</p>
+      <div class="text-lg font-medium text-blue-600 mt-2" id="current-date"></div>
+    </div>
+
+    <!-- Timer Section -->
+    <div class="bg-white rounded-xl p-8 mb-8 shadow-lg">
+      <div class="text-center mb-6">
+        <div class="text-6xl font-mono font-bold text-gray-800 mb-4" id="timer-display">00:00:00</div>
+        <div class="text-lg text-gray-600 mb-4" id="session-display">Current session: 0m</div>
+      </div>
+
+      <!-- Activity Selection -->
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-gray-700 mb-3">Select Activity:</label>
+
+        <!-- Existing Activities -->
+        <div id="existing-activities" class="flex flex-wrap gap-2 mb-4"></div>
+
+        <!-- Custom Activity Input -->
+        <div class="flex gap-2 items-center">
+          <input
+            type="text"
+            id="custom-activity-input"
+            placeholder="Or enter custom activity name..."
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            id="add-activity-btn"
+            class="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors"
+          >
+            + Add Activity
+          </button>
+        </div>
+      </div>
+
+      <!-- Add Activity Modal -->
+      <div id="add-activity-modal" class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200 hidden">
+        <h3 class="font-medium text-blue-800 mb-3">Add New Activity</h3>
+        <div class="flex gap-2 items-end">
+          <div class="flex-1">
+            <label class="block text-sm text-blue-700 mb-1">Activity Name</label>
+            <input
+              type="text"
+              id="new-activity-name"
+              placeholder="e.g., Math Study, Coding, Reading..."
+              class="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label class="block text-sm text-blue-700 mb-1">Target Minutes</label>
+            <input
+              type="number"
+              id="new-activity-target"
+              value="120"
+              step="15"
+              min="15"
+              class="w-24 px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <button
+            id="confirm-add-activity"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors"
+          >
+            Add
+          </button>
+          <button
+            id="cancel-add-activity"
+            class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition-colors"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <!-- Timer Controls -->
+      <div class="flex justify-center gap-4 mb-6">
+        <button
+          id="start-timer-btn"
+          class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition-colors disabled:bg-gray-400"
+        >
+          ▶ Start Timer
+        </button>
+        <button
+          id="pause-timer-btn"
+          class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg transition-colors hidden"
+        >
+          ⏸ Pause
+        </button>
+        <button
+          id="stop-timer-btn"
+          class="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg transition-colors disabled:bg-gray-400"
+        >
+          ■ Stop & Save
+        </button>
+        <button
+          id="reset-timer-btn"
+          class="flex items-center gap-2 bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition-colors"
+        >
+          🕒 Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Today's Progress -->
+    <div id="progress-section" class="bg-white rounded-xl p-6 mb-8 shadow-lg hidden">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        🎯 Today's Progress
+      </h2>
+      <div id="progress-grid" class="grid gap-4"></div>
+    </div>
+
+    <!-- Weekly Overview -->
+    <div class="bg-white rounded-xl p-6 mb-8 shadow-lg">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        📈 7-Day Overview
+      </h2>
+      <div class="overflow-x-auto">
+        <div id="overview-grid" class="grid grid-cols-7 gap-2 min-w-full"></div>
+      </div>
+    </div>
+
+    <!-- Today's Sessions -->
+    <div class="bg-white rounded-xl p-6 shadow-lg">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        📅 Today's Sessions
+      </h2>
+      <div id="sessions-list" class="space-y-3"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

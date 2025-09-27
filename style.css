@@ -1,0 +1,21 @@
+/* Minimal custom styles for the Daily Activity Tracker */
+
+/* Ensure consistent font for timer display */
+#timer-display {
+  font-family: 'Courier New', monospace;
+}
+
+/* Custom hover effects if needed */
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* Hide/show logic is handled in JS, but add smooth transitions */
+.hidden {
+  display: none;
+}
+
+/* Progress bar animation */
+.progress-bar {
+  transition: width 0.3s ease;
+}
